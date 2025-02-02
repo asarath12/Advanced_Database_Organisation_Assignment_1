@@ -33,6 +33,7 @@ appendEmptyBlock (SM_FileHandle *fHandle):Increase total Page number by one, fil
 ensureCapacity (int numberOfPages, SM_FileHandle *fHandle): If given numberOfPages is more than totalNumPages, increase totalNubPages with appendEmptyBlock until equal.
 
 Basic code structure and architecture description:
+
 A Header file was used at page 0.
 
 The page files began at page 1.
