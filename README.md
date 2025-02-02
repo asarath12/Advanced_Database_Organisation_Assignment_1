@@ -5,7 +5,7 @@ Summary:  This is a simple storage manager.  It reads and writes single blocks o
 
 Functions available to user: 
 
-/*initialize*/
+*initialize*
 
 initStorageManager(void):
 
