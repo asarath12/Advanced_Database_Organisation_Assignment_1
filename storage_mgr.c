@@ -192,7 +192,7 @@ extern RC writeBlock (int pageNum, SM_FileHandle *fHandle, SM_PageHandle memPage
     pageFile = fopen(fHandle->fileName, "r+" );
     if (pageFile==NULL){return RC_FILE_NOT_FOUND;}
     //seek to position
-	fseek(fHandle->mgmtInfo, (pageNum * PAGE_SIZE), SEEK_SET);
+	fseek(fHandle->mgmtInfo, ((pageNum+1) * PAGE_SIZE), SEEK_SET);
 	//now write
     fwrite(memPage, sizeof(char), sizeof(memPage), pageFile);
 	//reset current page possition
@@ -223,7 +223,7 @@ extern RC appendEmptyBlock (SM_FileHandle *fHandle)
 	SM_PageHandle newPage = (SM_PageHandle)calloc(PAGE_SIZE,sizeof(char));
 
 	//seek to the last page, check exists
-	int checkseek = fseek(pageFile, (fHandle->totalNumPages*PAGE_SIZE), SEEK_SET);
+	int checkseek = fseek(pageFile, 0 , SEEK_END);
 	if(checkseek != 0) {
 		free(newPage); //Don't lose memory
 		return RC_WRITE_FAILED;
