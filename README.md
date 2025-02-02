@@ -4,7 +4,9 @@ Assignment 1 : Store Manager
 Summary:  This is a simple storage manager.  It reads and writes single blocks of data from a file on disk into and out of memory.  Blocks are limited to PAGE_SIZE.  Besides reading and writing, the storage manager creates, opens, and closes files.  The manager tracks open file information: Total pages, current page, file name, and POSIX file descriptor (file pointer).
 
 Functions available to user: 
+
 /*initialize*/
+
 initStorageManager(void):
 
 /*page file manipulation*/
