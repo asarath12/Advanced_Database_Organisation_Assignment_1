@@ -12,16 +12,18 @@ initStorageManager(void):
 /*page file manipulation*/
 
 createPageFile (char *fileName):
-openPageFile (char *fileName, SM_FileHandle *fHandle); closePageFile (SM_FileHandle *fHandle): 
+openPageFile (char *fileName, SM_FileHandle *fHandle):
+closePageFile (SM_FileHandle *fHandle): 
 destroyPageFile (char *fileName):
 
 /* reading blocks from disc */
 
-readBlock (int pageNum , SM_FileHandle *fHandle , SM_PageHandle memPage); 
-int getBlockPos (SM_FileHandle *fHandle);
+readBlock (int pageNum , SM_FileHandle *fHandle , SM_PageHandle memPage):
+int getBlockPos (SM_FileHandle *fHandle):
 readFirstBlock (SM_FileHandle *fHandle, SM_PageHandle memPage):
 readPreviousBlock (SM_FileHandle *fHandle, SM_PageHandle memPage):
-readCurrentBlock (SM_FileHandle *fHandle, SM_PageHandle memPage); RC readNextBlock (SM_FileHandle *fHandle, SM_PageHandle memPage):
+readCurrentBlock (SM_FileHandle *fHandle, SM_PageHandle memPage):
+readNextBlock (SM_FileHandle *fHandle, SM_PageHandle memPage):
 readLastBlock (SM_FileHandle *fHandle, SM_PageHandle memPage):
 
 /* writing blocks to a page file */
@@ -36,9 +38,7 @@ ensureCapacity (int numberOfPages, SM_FileHandle *fHandle): If given numberOfPag
 
 Basic code structure and architecture description:
 
-A Header file was used at page 0.
-
-The page files began at page 1.
+The page files began at page 0.
 
 It was the goal to reduce repeated actions in multiple functions.  As an example, writeCurrentBlock calls writeBlock using the current block location.  This way, only one function writes information to a block.
 
