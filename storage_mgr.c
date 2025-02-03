@@ -195,7 +195,7 @@ extern RC writeBlock (int pageNum, SM_FileHandle *fHandle, SM_PageHandle memPage
 	int seekCheck =fseek(pageFile, (pageNum * PAGE_SIZE), SEEK_SET);
 	if (seekCheck == 0) {
 		//now write
-		fwrite(memPage, sizeof(char), sizeof(memPage), pageFile);
+		fwrite(memPage, sizeof(char), strlen(memPage), pageFile);
 		//reset current page position
 		fHandle->curPagePos = pageNum;
 		//close it down
