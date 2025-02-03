@@ -57,11 +57,9 @@ extern RC createPageFile(char *fileName)
     int one=1;
     int charSize = sizeof(char);
     // Setting memory for an empty page
-    //SM_PageHandle smPageHandlePtr = (SM_PageHandle)calloc(PAGE_SIZE, sizeof(char));
     SM_PageHandle smPageHandlePtr = (SM_PageHandle)calloc(PAGE_SIZE, charSize);
 
     // Returns error code if the fwrite does not write properly
-    //if (fwrite(smPageHandlePtr, sizeof(char), PAGE_SIZE, filePointer) >= PAGE_SIZE)
     if (fwrite(smPageHandlePtr, charSize * one, PAGE_SIZE, filePointer) >= PAGE_SIZE)
     {
         // Seeking to the end of file using SEEK_END
