@@ -8234,5 +8234,3 @@ The file was closed successfully
 log entry: extern RC destroyPageFile(char *fileName)
 [test_assign1_1.c-test single page content-L106-02:45:43] OK: finished test
 
-
-C:\Users\LENOVO\Downloads\ADO\code\1_myCode\github\3\Advanced_Database_Organisation_Assignment_1\git\assign1>

@@ -53,6 +53,8 @@ extern RC createPageFile(char *fileName)
         RC_message = "Failure encountered in the file creation";
         return  RC_ERROR;
     }
+    int zero=0;
+    int one=1;
     int charSize = sizeof(char);
     // Setting memory for an empty page
     //SM_PageHandle smPageHandlePtr = (SM_PageHandle)calloc(PAGE_SIZE, sizeof(char));
@@ -60,10 +62,10 @@ extern RC createPageFile(char *fileName)
 
     // Returns error code if the fwrite does not write properly
     //if (fwrite(smPageHandlePtr, sizeof(char), PAGE_SIZE, filePointer) >= PAGE_SIZE)
-    if (fwrite(smPageHandlePtr, charSize, PAGE_SIZE, filePointer) >= PAGE_SIZE)
+    if (fwrite(smPageHandlePtr, charSize * one, PAGE_SIZE, filePointer) >= PAGE_SIZE)
     {
         // Seeking to the end of file using SEEK_END
-        fseek(filePointer, 0, SEEK_END);
+        fseek(filePointer, zero, SEEK_END);
 
         // Closing the file 
         //pointed to by filePointer
@@ -101,6 +103,7 @@ extern RC openPageFile(char *fileName, SM_FileHandle *fHandle)
     printf("log entry: extern RC openPageFile(char *fileName, SM_FileHandle *fHandle)\n");
     filePointer = fopen(fileName, "r+");
     int one=1;
+    int zero=0;
     // Check and return file not found if the file is not present
     if (filePointer == NULL)
     {
@@ -110,7 +113,7 @@ extern RC openPageFile(char *fileName, SM_FileHandle *fHandle)
     else
     {
         //fseek(filePointer, 0, SEEK_END);
-        if (fseek(filePointer, 0, SEEK_END) != 0) 
+        if (fseek(filePointer, zero, SEEK_END) != 0) 
         {
             fclose(filePointer);
             return RC_ERROR;
@@ -119,6 +122,7 @@ extern RC openPageFile(char *fileName, SM_FileHandle *fHandle)
         // Stores the size of file in a variable
         int sizeOfFile = ftell(filePointer);
         printf("FileSize (sizeOfFile) = %d\n", sizeOfFile);
+        
         // Checks if the ftell returns -1, if so return error
         if (sizeOfFile == -1) 
         {
@@ -141,7 +145,7 @@ extern RC openPageFile(char *fileName, SM_FileHandle *fHandle)
         fHandle->totalNumPages = numberOfPages * one;
 
         // Setting the current page position(fHandle->curPagePos)
-        fHandle->curPagePos = 0;
+        fHandle->curPagePos = zero;
 
         // Rewinding the file pointer to beginning of the file
         rewind(filePointer);
@@ -202,8 +206,9 @@ extern RC destroyPageFile(char *fileName)
     printf("log entry: extern RC destroyPageFile(char *fileName)\n");
     // Storing the result returned by remove function
     int removeFileResult = remove(fileName);
-    // Return error if res is -1
-    if (removeFileResult == -1)
+    int negOne = -1;
+    // Return error if res is negOne
+    if (removeFileResult == negOne)
     {
         printf("removeFileResult == Failure. The file could not be deleted\n");
         RC_message = "Error occurred while destroying file";
