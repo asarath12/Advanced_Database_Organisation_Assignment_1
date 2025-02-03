@@ -1,9 +1,9 @@
 
-C:\Users\LENOVO\Downloads\ADO\code\1_myCode\3\git\assign1>make
+C:\Users\LENOVO\Downloads\ADO\code\1_myCode\github\3\Advanced_Database_Organisation_Assignment_1\git\assign1>make
 gcc -Wall -g -c storage_mgr.c
 gcc -Wall -g -o test_assign1 test_assign1_1.o storage_mgr.o dberror.o
 
-C:\Users\LENOVO\Downloads\ADO\code\1_myCode\3\git\assign1>make run
+C:\Users\LENOVO\Downloads\ADO\code\1_myCode\github\3\Advanced_Database_Organisation_Assignment_1\git\assign1>make run
 gcc -Wall -g -o test_assign1 test_assign1_1.o storage_mgr.o dberror.o
 ./test_assign1
 ======================================
@@ -31,9 +31,6 @@ FileSize (sizeOfFile) = 4096
 Total Number of Pages (numberOfPages)= 1
 The file name is (fileName) = test_pagefile.bin
 created and opened file
-log entry: extern RC readFirstBlock(SM_FileHandle *fHandle, SM_PageHandle memPage)
-log entry: extern RC readBlock(int pageNum, SM_FileHandle *fHandle, SM_PageHandle memPage)
-offset==0
 [test_assign1_1.c-test single page content-L87-02:45:43] OK: expected true: expected zero byte in first page of freshly initialized page
 [test_assign1_1.c-test single page content-L87-02:45:43] OK: expected true: expected zero byte in first page of freshly initialized page
 [test_assign1_1.c-test single page content-L87-02:45:43] OK: expected true: expected zero byte in first page of freshly initialized page
@@ -4135,9 +4132,6 @@ log entry: extern RC writeBlock(int pageNum, SM_FileHandle *fHandle, SM_PageHand
 pageNum=0
 Writing of the data is successful.
 writing first block
-log entry: extern RC readFirstBlock(SM_FileHandle *fHandle, SM_PageHandle memPage)
-log entry: extern RC readBlock(int pageNum, SM_FileHandle *fHandle, SM_PageHandle memPage)
-offset==0
 [test_assign1_1.c-test single page content-L99-02:45:43] OK: expected true: character in page read from disk is the one we expected.
 [test_assign1_1.c-test single page content-L99-02:45:43] OK: expected true: character in page read from disk is the one we expected.
 [test_assign1_1.c-test single page content-L99-02:45:43] OK: expected true: character in page read from disk is the one we expected.
@@ -8241,3 +8235,4 @@ log entry: extern RC destroyPageFile(char *fileName)
 [test_assign1_1.c-test single page content-L106-02:45:43] OK: finished test
 
 
+C:\Users\LENOVO\Downloads\ADO\code\1_myCode\github\3\Advanced_Database_Organisation_Assignment_1\git\assign1>
