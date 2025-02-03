@@ -1,6 +1,3 @@
-//
-// From Project handout
-
 #ifndef DBERROR_H
 #define DBERROR_H
 
@@ -38,23 +35,23 @@ extern void printError (RC error);
 extern char *errorMessage (RC error);
 
 #define THROW(rc,message) \
-do {			  \
-RC_message=message;	  \
-return rc;		  \
-} while (0)		  \
+		do {			  \
+			RC_message=message;	  \
+			return rc;		  \
+		} while (0)		  \
 
 // check the return code and exit if it is an error
 #define CHECK(code)							\
-do {									\
-int rc_internal = (code);						\
-if (rc_internal != RC_OK)						\
-{									\
-char *message = errorMessage(rc_internal);			\
-printf("[%s-L%i-%s] ERROR: Operation returned error: %s\n",__FILE__, __LINE__, __TIME__, message); \
-free(message);							\
-exit(1);							\
-}									\
-} while(0);
+		do {									\
+			int rc_internal = (code);						\
+			if (rc_internal != RC_OK)						\
+			{									\
+				char *message = errorMessage(rc_internal);			\
+				printf("[%s-L%i-%s] ERROR: Operation returned error: %s\n",__FILE__, __LINE__, __TIME__, message); \
+				free(message);							\
+				exit(1);							\
+			}									\
+		} while(0);
 
 
 #endif
