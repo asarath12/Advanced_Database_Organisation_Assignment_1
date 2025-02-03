@@ -524,6 +524,7 @@ extern RC appendEmptyBlock(SM_FileHandle *fHandle)
     // If file handle is null, return proper error message
     if(fHandle == NULL) 
     {
+        printf("File handle has not been correctly initialized, and it is null \n");
         RC_message = "File handle has not been correctly initialized, and it is null";
 
         return RC_FILE_HANDLE_NOT_INIT ;
@@ -535,6 +536,7 @@ extern RC appendEmptyBlock(SM_FileHandle *fHandle)
     // then return error
     if (filePointer == NULL)
     {
+        printf("The file not found error \n");
         RC_message = "The file not found error!";
         return RC_FILE_NOT_FOUND;
     }
@@ -543,6 +545,7 @@ extern RC appendEmptyBlock(SM_FileHandle *fHandle)
 
     if (fseek(filePointer, zero, SEEK_END) != 0)
     {
+        printf("fseek of the file has failed. \n");
         RC_message = "fseek of the file has failed";
         return RC_WRITE_FAILED;
     }
@@ -586,6 +589,7 @@ extern RC ensureCapacity(int numberOfPages, SM_FileHandle *fHandle)
     //  pages is present  or not
     if (numberOfPages <= (fHandle->totalNumPages) * one)
     {
+        printf("Capacity left is not enough. \n");
         RC_message = "Capacity left is not enough";
         return RC_ERROR;
     }
@@ -602,10 +606,6 @@ extern RC ensureCapacity(int numberOfPages, SM_FileHandle *fHandle)
     }
     return RC_OK;
 }
-
-
-
-
 
 
 

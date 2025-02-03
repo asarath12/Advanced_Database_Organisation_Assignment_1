@@ -1,9 +1,9 @@
 
-C:\Users\LENOVO\Downloads\ADO\code\1_myCode\github\3\Advanced_Database_Organisation_Assignment_1\git\assign1>make
+C:\Users\LENOVO\Downloads\ADO\code\1_myCode\github\5\Advanced_Database_Organisation_Assignment_1\git\assign1>make
 gcc -Wall -g -c storage_mgr.c
 gcc -Wall -g -o test_assign1 test_assign1_1.o storage_mgr.o dberror.o
 
-C:\Users\LENOVO\Downloads\ADO\code\1_myCode\github\3\Advanced_Database_Organisation_Assignment_1\git\assign1>make run
+C:\Users\LENOVO\Downloads\ADO\code\1_myCode\github\5\Advanced_Database_Organisation_Assignment_1\git\assign1>make run
 gcc -Wall -g -o test_assign1 test_assign1_1.o storage_mgr.o dberror.o
 ./test_assign1
 ======================================
