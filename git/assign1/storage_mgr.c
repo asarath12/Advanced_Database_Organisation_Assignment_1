@@ -57,7 +57,7 @@ extern RC createPageFile(char *fileName)
     int one=1;
     int charSize = sizeof(char);
     // Setting memory for an empty page
-    SM_PageHandle smPageHandlePtr = (SM_PageHandle)calloc(PAGE_SIZE, charSize);
+    SM_PageHandle smPageHandlePtr = (SM_PageHandle)calloc(PAGE_SIZE, (charSize * one));
 
     // Returns error code if the fwrite does not write properly
     if (fwrite(smPageHandlePtr, charSize * one, PAGE_SIZE, filePointer) >= PAGE_SIZE)
@@ -110,7 +110,6 @@ extern RC openPageFile(char *fileName, SM_FileHandle *fHandle)
     }
     else
     {
-        //fseek(filePointer, 0, SEEK_END);
         if (fseek(filePointer, zero, SEEK_END) != 0) 
         {
             fclose(filePointer);
@@ -133,7 +132,6 @@ extern RC openPageFile(char *fileName, SM_FileHandle *fHandle)
         printf("The file name is (fileName) = %s\n", fileName);
 
         // Setting the fHandle->fileName
-        //fHandle->fileName = fileName;
         fHandle->fileName = strdup(fileName);  // Deep copy to avoid pointer issues
 
         // Setting the fHandle->mgmtInfo
@@ -173,7 +171,6 @@ extern RC closePageFile(SM_FileHandle *fHandle)
         return RC_ERROR;
     }
     // Check and return error if the fclose returns EOF
-    //if (fclose(fHandle->mgmtInfo) == EOF)
     if (fclose((FILE *)fHandle->mgmtInfo) == EOF)
     {
         printf("fclose((FILE *)fHandle->mgmtInfo) == EOF \n");
