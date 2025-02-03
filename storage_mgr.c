@@ -191,16 +191,21 @@ extern RC writeBlock (int pageNum, SM_FileHandle *fHandle, SM_PageHandle memPage
     //Checking that file exists.  Use read/write so file open for next step.
     pageFile = fopen(fHandle->fileName, "r+" );
     if (pageFile==NULL){return RC_FILE_NOT_FOUND;}
-    //seek to position
-	fseek(fHandle->mgmtInfo, ((pageNum+1) * PAGE_SIZE), SEEK_SET);
-	//now write
-    fwrite(memPage, sizeof(char), sizeof(memPage), pageFile);
-	//reset current page possition
-	fHandle->curPagePos = pageNum;
-    //close it down
-    fclose(pageFile);
-    //if operation successful, return RC_OK
-    return RC_OK;
+    //seek to position, check
+	int seekCheck =fseek(pageFile, (pageNum * PAGE_SIZE), SEEK_SET);
+	if (seekCheck == 0) {
+		//now write
+		fwrite(memPage, sizeof(char), sizeof(memPage), pageFile);
+		//reset current page position
+		fHandle->curPagePos = pageNum;
+		//close it down
+		fclose(pageFile);
+		//if operation successful, return RC_OK
+		return RC_OK;
+	} else {
+		fclose(pageFile);
+		return RC_WRITE_FAILED;
+	}
   }
 extern RC writeCurrentBlock (SM_FileHandle *fHandle, SM_PageHandle memPage)
 //Rebecca Thomson
@@ -223,7 +228,8 @@ extern RC appendEmptyBlock (SM_FileHandle *fHandle)
 	SM_PageHandle newPage = (SM_PageHandle)calloc(PAGE_SIZE,sizeof(char));
 
 	//seek to the last page, check exists
-	int checkseek = fseek(pageFile, 0 , SEEK_END);
+	int tempCursorPoint = fHandle->totalNumPages*PAGE_SIZE;
+	int checkseek = fseek(pageFile, tempCursorPoint , SEEK_SET);
 	if(checkseek != 0) {
 		free(newPage); //Don't lose memory
 		return RC_WRITE_FAILED;
@@ -248,8 +254,13 @@ extern RC ensureCapacity (int numberOfPages, SM_FileHandle *fHandle)
 // if file  totalNumPages< number of Pages, then increase file size to number of pages
 // will call function appendEmptyBlock
 {
-  while (fHandle->totalNumPages<numberOfPages){appendEmptyBlock (fHandle); }
-
+		//check exists
+	pageFile = fopen(fHandle->fileName, "r+" );
+	if(pageFile == NULL){return RC_FILE_NOT_FOUND;}
+	//loop for additions
+	while ((fHandle->totalNumPages)<numberOfPages){appendEmptyBlock (fHandle); }
+	//close open
+	fclose(pageFile);
     //after inserting the correct number of pages,  return RC_OK
-  return RC_OK;
+	return RC_OK;
 }
