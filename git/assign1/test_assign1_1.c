@@ -24,9 +24,15 @@ main (void)
   testName = "";
   
   initStorageManager();
+  //printf("log entry: after initStorageManager() in test_assign1_1 file \n");
 
   testCreateOpenClose();
+  //printf("log entry: after testCreateOpenClose() in test_assign1_1 file \n");
+  
   testSinglePageContent();
+  //printf("log entry: after testSinglePageContent() in test_assign1_1 file \n");
+  
+
 
   return 0;
 }
@@ -93,6 +99,7 @@ testSinglePageContent(void)
     ASSERT_TRUE((ph[i] == (i % 10) + '0'), "character in page read from disk is the one we expected.");
   printf("reading first block\n");
 
+  TEST_CHECK(closePageFile (&fh));
   // destroy new page file
   TEST_CHECK(destroyPageFile (TESTPF));  
   

@@ -7,7 +7,7 @@
  *                    handle data structures                *
  ************************************************************/
 typedef struct SM_FileHandle {
-	char *fileName; //global variables
+	char *fileName;
 	int totalNumPages;
 	int curPagePos;
 	void *mgmtInfo;
